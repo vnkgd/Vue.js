@@ -1,0 +1,121 @@
+<!-- Задание 1
+1. Установить расширение
+a. Vue VSCode Snippets
+b. Vue Language Features (Volar)
+2. Создать новый файл index.html, добавить структуру
+3. Подключить vue к проекту
+4. Вывести на экран Hello Vue -->
+<!-- Задание 2
+1. Создать параграф, внутри которого будет отображаться текст
+“Товаров в корзине 0”
+2. Создать кнопку “Купить”, при клике на которую, значение внутри
+параграфа будет увеличиваться на 1, при повторном нажатии на эту
+кнопку, счетчик не становится больше, добавить 4 таких кнопки
+3. При нажатии на кнопку купить, необходимо чтобы текст внутри
+кнопки поменялся на “Товар в Корзине”
+5. Создать параграф, внутри которого будет отображаться текст "Товаров в корзине 0" -->
+<!-- Задание 3
+1. Создать две кнопки “Мне исполнилось 14 лет” и “Мне еще нет 14 лет”
+2. Если пользователь нажимает на первую кнопку, то должен
+отобразиться текст. “Можете заказать товар”
+3. Если пользователь нажимает на вторую кнопку, отображается текст
+“Доступ закрыт” -->
+<!-- Задание 4
+1. Создать кнопку “Показать еще” при клике на которую появляется
+контент под кнопкой, при повторном клике, контент необходимо скрыть
+2. Добавить анимацию появления текстового блока -->
+<!-- Задание 5
+1. Создайте кнопку "Генерировать случайное число". При клике на
+кнопку должно отображаться случайное число в заданном диапазоне (например, от 1 до 10).
+2. При клике на кнопку, если полученное значение меньше 5,
+необходимо вывести на страницу, “Число меньше 5”
+3. Если число от 5 до 9, необходимо вывести “Число от 5 до 9”
+4. Если число равно 10, необходимо вывести “Число ранов 10 -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <h1>{{ message }}</h1>
+        <button @click="isTrue=true">Мне исполнилось 14 лет</button>
+        <button @click="isTrue=false">Мне еще нет 14 лет</button>
+        <h3 v-if="isTrue">Можете заказать товар</h3>
+        <h3 v-else>Доступ закрыт</h3>
+        <p>Товаров в корзине {{ counter }}</p>
+        <div v-for="product in cart" :key="product.id" class="cartBox">
+            <p>Name : {{product.name}}</p>
+            <button @click="addProduct(product)">{{product.buttonText}}</button>
+        </div>
+        <br>
+        <button @click="showContent = !showContent">Показать еще</button>
+        <p v-if="showContent">Ещё контент</p>
+        <br>
+        <br>
+        <button @click="getRandomeNumber">Сгенерировать случайное число</button>
+        <p>{{randomeNumber}}</p>
+        <p>{{numberInfo}}</p>
+        <!-- <h3 v-if="showContent">Число меньше 5</h3> -->
+        <!-- <h3 v-if="showContent">Число от 5 до 9</h3> -->
+        <!-- <h3 v-else>Число ранов 10</h3> -->
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                message: 'Hello Vue',
+                counter: 0,
+                cart: [
+                    { id: 1, name: 'product1', inCart: false, buttonText: 'Купить' },
+                    { id: 2, name: 'product2', inCart: false, buttonText: 'Купить' },
+                    { id: 3, name: 'product3', inCart: false, buttonText: 'Купить' },
+                    { id: 4, name: 'product4', inCart: false, buttonText: 'Купить' },
+                ],
+                isTrue: false,
+                showContent: false,
+                randomeNumber: 0,
+                // numberInfo: '',
+            },
+            methods: {
+                addProduct(product) {
+                    if (!product.inCart) {
+                        product.inCart = true;
+                        this.counter++;
+                        product.buttonText = 'Товар в корзине';
+                    }
+                },
+                addProduct(product) {
+                    if (!product.inCart) {
+                        product.inCart = true;
+                        this.counter++;
+                        product.buttonText = 'Товар в корзине';
+                    }
+                },
+                getRandomeNumber() {
+                    this.randomeNumber = Math.floor(Math.random() * 10 + 1);
+                },
+            },
+            computed: {
+                numberInfo() {
+                    if (this.randomeNumber < 5) {
+                        return "Число меньше 5"
+                    } else if (this.randomeNumber === 10) {
+                        return "Число равно 10"
+                    } else {
+                        return "Число больше или равно 5 и меньше или равно 9"
+                    }
+                },
+            }
+        })
+    </script>
+</body>
+
+</html>
