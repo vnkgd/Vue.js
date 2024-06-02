@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interno</title>
+    <!-- <link rel="stylesheet" href="styles.css"> -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:wght@400&display=swap"
+        as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Jost:wght@400;600&display=swap" as="style"
+        onload="this.onload=null;this.rel='stylesheet'">
+    <!-- <script defer src="https://cdn.jsdelivr.net/npm/vue@2"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div id="app">
+            <div class="articles-news" v-for="article in articles" :key="article.id">
+                <img :src="article.image" :alt="article.title">
+                <h3>{{ article.title }}</h3>
+                <p>{{ article.content }}</p>
+                <a :href="article.link">Read More</a>
+            </div>
+        </div>
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                articles: [
+                    {
+                        id: 1,
+                        image: 'path/to/image1.jpg',
+                        title: 'Article 1',
+                        content: 'Summary of article 1.',
+                        link: 'link-to-article1.html'
+                    },
+                    {
+                        id: 2,
+                        image: 'path/to/image2.jpg',
+                        title: 'Article 2',
+                        content: 'Summary of article 2.',
+                        link: 'link-to-article2.html'
+                    },
+                    {
+                        id: 3,
+                        image: 'path/to/image3.jpg',
+                        title: 'Article 3',
+                        content: 'Summary of article 3.',
+                        link: 'link-to-article3.html'
+                    }
+                ]
+            }
+        });
+    </script>
+</body>
+
+</html>

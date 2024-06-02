@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X—-UA-Compatible" content="IE=edge">
+    <meta name="Viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <style>
+        .block {
+            width: 350px;
+            height: 200px;
+        }
+
+        .btn {
+            width: 35px;
+            height: 35px;
+        }
+
+        .like {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <!-- Директива v-on
+        <input type="text" @keyup.enter="send()"><button @click="send()">Отправить</button>
+        enter можно заменить на space, но кажется это не из жизни -->
+        <!-- <h2>link elem</h2> -->
+        <!-- Директива v-bind -->
+        <!-- <a href="">my new link</a> так в ссылке будет linkHref а нам надо product.html-->
+        <!-- <a v-bind:href="linkHref">my new link</a> -->
+        <!-- а так в ссылке будет как нам надо product.html -->
+        <!-- <img src="imgPhoto" alt="">  -->
+        <!-- //так будет imgPhoto -->
+        <!-- <img :src="imgPhoto" alt=""> -->
+        <!-- а так photo.jpg -->
+        <!-- <div class="block" :style="{backgroundColor: 'grey'}"></div> -->
+        <!-- <div class="block" :style="styleBlock">
+            Lorem ipsum dolor sit.
+        </div> -->
+        <!-- Директива v-model -->
+        <!-- <h2>heading v-model</h2> -->
+        <!-- <h2>{{modelData}}</h2> -->
+        <!-- <input type="text" v-model="modelData"> -->
+        <!-- <input type="text" v-model.lazy="modelData"> -->
+        <!-- <button @click="headingText" class="heading__button">click heading</button> -->
+        <!-- Модификаторы в директивах -->
+        <!-- <h2>Калькулятор</h2> -->
+        <!-- <input type="text" v-model="firtNum"> // это тект, работать не будет-->
+        <!-- <input type="number" v-model.number="firtNum"> -->
+        <!-- <input type="number" v-model.number="secondNum"> -->
+        <!-- = -->
+        <!-- {{result}} -->
+        <!-- кнопки -->
+        <!-- <div>
+            <button @click="plus">+</button>
+            <button @click="minus">-</button>
+            <button @click="multiply">*</button>
+            <button @click="divide">/</button>
+        </div> -->
+
+        <!-- //Вычисляемые свойства -->
+        <!-- <h2>Конструктор блоков</h2>
+        <input type="text" v-model="blockWidth">
+        <input type="text" v-model="blockColor">
+        <div class="block" :style="change">
+            Lorem ipsum dolor sit.
+        </div> -->
+
+        <!-- Отрисовка списков -->
+        <!-- <h2>Список list ul li</h2>
+        <ul>
+            <li v-for="item in listItem" :key="item.id">{{item}}</li>
+        </ul>
+        <input type="text" v-model="newList" @keyup.enter="addItem"> -->
+        <!-- //Шаблонизация -->
+        <article v-for="article in info" :key="article.id" class="article">
+            <h2 class="article__title">{{article.title}}</h2>
+            <p class="article__text">{{article.text}}</p>
+            <!-- <button>like</button> -->
+            <!-- Работа с классами -->
+            <button class="btn" @click="likeToggle = !likeToggle" :class="{like: likeToggle}">like</button>
+        </article>
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                // linkHref: 'product.html',
+                // imgPhoto: 'photo.jpg',
+                // styleBlock: {
+                //     backgroundColor: 'green',
+                //     color: 'red'
+                // },
+                // modelData: '',
+                // firtNum: 0,
+                // secondNum: 0,
+                // result: 0,
+                // blockWidth: 100,
+                // blockColor: '#ccc',
+                // listItem: [1, 2, 4],
+                // newList: '',
+                info: [
+                    {
+                        title: 'title text',
+                        text: 'descrition text info element',
+                    },
+                    {
+                        title: 'new title text',
+                        text: 'new descrition text info element',
+                    },
+                ],
+                likeToggle: false,  //переключатель, есть класс или нет
+            },
+            methods: {
+                // send() {
+                //     console.log('Отправили данные внутри input');
+                // },
+                // headingText() {
+                //     if (this.modelData === '') {
+                //         this.modelData = 'Заголовок для блока'
+                //     }
+                // },
+                // plus() {
+                //     // this.result = this.firtNum + this.secondNum; //так склеивает, т.к. значения текстовые
+                //     // this.result = Number(this.firtNum) + Number(this.secondNum); //так уже работает
+                //     this.result = this.firtNum + this.secondNum; //так
+                // },
+                // minus() {
+                //     this.result = this.firtNum - this.secondNum; //так
+                // },
+                // multiply() {
+                //     this.result = this.firtNum * this.secondNum; //так
+                // },
+                // divide() {
+                //     this.result = this.firtNum / this.secondNum; //так
+                // },
+                //меняем на Вычисляемые свойства (computed)
+                // changeBlock() {
+                //     return {
+                //         width: this.blockWidth,
+                //         height: this.blockWidth,
+                //         backgroundColor: this.blockColor
+                //     }
+                // },
+                addItem() {
+                    this.listItem.push(this.newList);
+                }
+
+
+            },
+            computed: {
+                change() {
+                    return {
+                        width: `${this.blockWidth}px`,
+                        height: `${this.blockWidth}px`,
+                        backgroundColor: this.blockColor,
+                    }
+                },
+            },
+        })
+    </script>
+</body>
+
+</html>
